@@ -1,0 +1,36 @@
+.question-wrapper {
+  margin: 2rem 0;
+  padding-left: 1rem;
+  border-left: 1px solid #b9b9b9;
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    & span {
+      margin: 0 7px;
+    }
+    & strong:first-child {
+      margin-right: 5px;
+    }
+  }
+}
+.new-question-btn {
+  color: #0d6efd;
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.hidden {
+  display: none;
+}
+.button_to {
+  input {
+    padding: 0;
+    border: none;
+    color: #0d6efd;
+    background: none;
+    line-height: normal;
+    border-bottom: 1px solid #5c98fe;
+  }
+}

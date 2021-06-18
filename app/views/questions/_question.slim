@@ -1,0 +1,6 @@
+.question-wrapper(id="#{dom_id(question)}_pure")
+  .title
+    strong = question.title
+    strong = "- #{question.user.email}"
+    span = time_ago_in_words(question.created_at)
+  p = question.body
