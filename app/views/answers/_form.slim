@@ -1,0 +1,6 @@
+= turbo_frame_tag 'answer_form'
+
+  = form_with(model: @answer, url: question_answers_path(@question), class: 'mt-2') do |f|
+    = f.label :body, 'Дать ответ:', class: 'form-label'
+    = f.text_area :body, required: true, rows: '3', class: 'form-control'
+    = f.submit 'Ответить', class: 'btn btn-primary mt-3'

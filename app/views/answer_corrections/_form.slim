@@ -1,0 +1,8 @@
+= turbo_frame_tag 'answer_correction_form'
+  = form_with model: @answer_correction, url: question_answers_answer_correction_path(question.id), class: 'mt-2' do |f|
+
+    = f.hidden_field :answer_id, value: @answer.id
+    = f.label :body, 'Предложить правку:', class: 'form-label'
+    = f.text_area :body, required: true, rows: '3', class: 'form-control'
+
+    = f.submit 'Предложить правку', class: 'btn btn-primary mt-3'

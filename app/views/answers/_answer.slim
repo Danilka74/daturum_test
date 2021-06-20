@@ -1,0 +1,13 @@
+.answer-wrapper(id="#{dom_id(answer)}_pure")
+  .answer-body
+    span = format_answer_body(answer).html_safe
+    strong = "- #{answer.user.name}"
+    span = time_ago_in_words(answer.created_at)
+
+  - if answer.answer_corrections.present?
+    - answer.answer_corrections.each do |answer_correction|
+      - if answer.owner?(current_user&.id) || answer_correction.owner?(current_user&.id)
+        = render partial: 'answer_corrections/answer_correction', locals: { answer: answer, answer_correction: answer_correction, question: question }
+
+  = turbo_frame_tag dom_id(answer)
+    = button_to "Предложить правку", answer_correction_new_path, params: { answer_id: answer.id, question_id: question.id }

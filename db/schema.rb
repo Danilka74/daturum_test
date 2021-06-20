@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_124221) do
+ActiveRecord::Schema.define(version: 2021_06_20_095449) do
 
   create_table "answer_corrections", force: :cascade do |t|
     t.text "body"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_124221) do
     t.integer "answer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "accepted_body"
     t.index ["answer_id"], name: "index_answer_corrections_on_answer_id"
     t.index ["user_id"], name: "index_answer_corrections_on_user_id"
   end
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_124221) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,6 +1,16 @@
 .question-wrapper(id="#{dom_id(question)}_pure")
   .title
     strong = question.title
-    strong = "- #{question.user.email}"
+    strong = "- #{question.user.name}"
     span = time_ago_in_words(question.created_at)
   p = question.body
+
+  - if question.answers.present?
+    - question.answers.each do |answer|
+      = render partial: 'answers/answer', locals: { answer: answer, question: question }
+
+    = turbo_frame_tag dom_id(question)
+      = button_to "Дать новый ответ", answer_new_path, params: { question_id: question.id }
+  - else
+    = turbo_frame_tag dom_id(question)
+      = button_to "Дать ответ", answer_new_path, params: { question_id: question.id }

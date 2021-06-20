@@ -1,6 +1,6 @@
 header
   - if current_user
-    strong = current_user.email
+    strong = current_user.name
     = button_to 'Выйти', destroy_user_session_path, method: :delete, data: { turbo: false, remote: false }
   - else
     = link_to 'Войти', new_user_session_path
