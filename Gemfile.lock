@@ -124,6 +124,7 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.1.0)
     popper_js (2.9.2)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -208,7 +209,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     stimulus-rails (0.2.4)
       rails (>= 6.0.0)
     temple (0.8.2)
@@ -253,6 +253,7 @@ DEPENDENCIES
   hotwire-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
   pundit
@@ -263,7 +264,6 @@ DEPENDENCIES
   selenium-webdriver
   slim-rails
   spring
-  sqlite3 (~> 1.4)
   stimulus-rails
   tzinfo-data
   web-console (>= 4.1.0)
