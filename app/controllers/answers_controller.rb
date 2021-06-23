@@ -1,9 +1,10 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:create, :edit, :update]
   before_action :set_question, only: [:new, :create, :edit, :update]
 
   def new
     @answer = @question.answers.new()
+    authorize @answer
 
     respond_to do |format|
       format.turbo_stream do
@@ -16,6 +17,7 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.create(answer_params)
+    authorize @answer
 
     respond_to do |format|
       if @answer.save

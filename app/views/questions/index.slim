@@ -1,16 +1,15 @@
 - if @questions.present?
-  - @questions.each do |question|
-    = render question
+  .(data-controller='colorize')
+    - @questions.each do |question|
+      = render question
 
-  = turbo_stream_from "questions"
-  = turbo_frame_tag 'questions'
-  .(data-controller='form')
-    span.new-question-btn(data-action='click->form#display') Задать вопрос
-    = turbo_frame_tag 'new_question', src: new_question_path, target: '_top'
+    = turbo_stream_from "questions"
+    = turbo_frame_tag 'questions'
+
+    = render partial: 'questions/button'
 - else
   p Вопросов пока нет
   = turbo_stream_from "questions"
   = turbo_frame_tag 'questions'
-  .(data-controller='form')
-    span.new-question-btn(data-action='click->form#display') Задать вопрос
-    = turbo_frame_tag 'new_question', src: new_question_path, target: '_top'
+
+  = render partial: 'questions/button'

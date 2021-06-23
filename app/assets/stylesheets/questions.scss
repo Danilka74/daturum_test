@@ -22,10 +22,9 @@
       strong {
         margin: 7px;
       }
-    }
-    #accepted {
-      margin: 0 7px;
-      color: blue;
+      .light {
+        background-color: #d0f8df;
+      }
     }
   }
   .answer-correction-wrapper {
@@ -35,6 +34,10 @@
     border-left: 1px solid #b9b9b9;
     strong {
       margin-right: 7px;
+    }
+    .accepted {
+      margin: 0 7px;
+      color: blue;
     }
   }
 }

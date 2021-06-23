@@ -1,9 +1,11 @@
-= turbo_frame_tag 'new_question', target: '_top' do
+= turbo_frame_tag 'new_question_form'
 
-  = form_with(model: @question, url: questions_path, class: 'mt-4 hidden', data: { action: 'turbo:submit-end->form#reset', form_target: 'questionForm' }) do |f|
+  = form_with(model: @question, url: questions_path, class: 'mt-4') do |f|
 
     = f.label :title, 'Заголовок вопроса:', class: 'form-label'
     = f.text_field :title, required: true, class: 'form-control mb-3'
+
     = f.label :body, 'Подробное описание ситуации:', class: 'form-label'
     = f.text_area :body, required: true, rows: '3', class: 'form-control'
+
     = f.submit 'Задать вопрос', class: 'btn btn-primary mt-3', data: { disable_with: false }

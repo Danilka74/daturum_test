@@ -3,12 +3,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :questions, only: [:index, :new, :create] do
+  resources :questions, only: [:index, :create] do
     resource :answers, only: [:create, :update] do
       resource :answer_correction, only: [:create]
     end
   end
 
+  # custom routes (needed for turbo_stream)
+  post 'question/new', to: 'questions#new'
   post 'answer/new', to: 'answers#new'
   post 'answer/edit', to: 'answers#edit'
   post 'answer-correction/new', to: 'answer_corrections#new'

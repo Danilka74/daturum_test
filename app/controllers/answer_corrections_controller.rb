@@ -1,10 +1,11 @@
 class AnswerCorrectionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:create]
   before_action :set_answer, only: [:new, :create]
 
   def new
     @question = Question.find(params[:question_id])
     @answer_correction = @answer.answer_corrections.new()
+    authorize @answer_correction
 
     respond_to do |format|
       format.turbo_stream do
@@ -17,13 +18,19 @@ class AnswerCorrectionsController < ApplicationController
 
   def create
     @answer_correction = @answer.answer_corrections.create(answer_correction_params)
+    authorize @answer_correction
 
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('answer_correction_form', partial: 'answer_corrections/answer_correction',
-          locals: { answer_correction: @answer_correction, answer: @answer })
-        end
-      format.html
+      if @answer_correction.save
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('answer_correction_form', partial: 'answer_corrections/answer_correction',
+            locals: { answer_correction: @answer_correction, answer: @answer })
+          end
+        format.html
+      else
+        flash[:alert] = 'Ошибка'
+        format.html { redirect_to root_path }
+      end
     end
   end
 
@@ -38,6 +45,6 @@ class AnswerCorrectionsController < ApplicationController
   end
 
   def answer_correction_params
-    params.require(:answer_correction).permit(:body).merge(user: current_user)
+    params.require(:answer_correction).permit(:body, :answer_id).merge(user: current_user)
   end
 end

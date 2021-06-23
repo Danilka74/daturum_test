@@ -1,0 +1,17 @@
+h2 Войти
+
+= form_for(User.new, as: :user, url: session_path(:user), data: { turbo: false, remote: false }) do |f|
+  .mb-3
+    = f.label :email, class: "form-label"
+    = f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "form-control"
+  .mb-3
+    = f.label :password, class: "form-label"
+    = f.password_field :password, autocomplete: "current-password", required: true, class: "form-control"
+  - if devise_mapping.rememberable?
+    .mb-3.form-check
+      = f.check_box :remember_me, class: "form-check-input"
+      = f.label :remember_me, class: "form-check-label"
+  .actions
+    = f.submit "Войти", class: "btn btn-primary"
+
+= render "devise/shared/links"
