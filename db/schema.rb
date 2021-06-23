@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2021_06_20_095449) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answer_corrections", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
-    t.integer "answer_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "accepted_body"
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_095449) do
 
   create_table "answers", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
-    t.integer "question_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_095449) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
