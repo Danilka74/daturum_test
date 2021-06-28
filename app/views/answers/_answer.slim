@@ -9,6 +9,6 @@
       - if answer.owner?(current_user&.id) || answer_correction.owner?(current_user&.id)
         = render partial: 'answer_corrections/answer_correction', locals: { answer: answer, answer_correction: answer_correction, question: question }
 
-  - unless answer.has_answer_corrections_from_user?(current_user.id)
+  - unless answer.has_answer_corrections_from_user?(current_user&.id)
     = turbo_frame_tag dom_id(answer)
       = button_to "Предложить правку", answer_correction_new_path, params: { answer_id: answer.id, question_id: question.id }
