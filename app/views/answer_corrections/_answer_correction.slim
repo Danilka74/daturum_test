@@ -1,7 +1,6 @@
 .answer-correction-wrapper
   span = answer_correction.body
   strong = " - #{answer_correction.user.name}"
-  / span = time_ago_in_words(answer_correction&.created_at) if answer_correction.present?
   - if answer_correction.accepted_body.present?
     span.accepted id="#{answer_correction.id}" data-action="mouseover->colorize#highlight mouseout->colorize#cleanUp" data-colorize-target="link" принято
     span = time_ago_in_words(answer_correction.updated_at)
