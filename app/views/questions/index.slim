@@ -8,7 +8,8 @@
 
     = render partial: 'questions/button'
 - else
-  p Вопросов пока нет
+  = turbo_frame_tag 'empty_title'
+    p Вопросов пока нет
   = turbo_stream_from "questions"
   = turbo_frame_tag 'questions'
 

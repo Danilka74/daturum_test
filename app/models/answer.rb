@@ -18,4 +18,8 @@ class Answer < ApplicationRecord
 
     self.answer_corrections.find_by_user_id(user_id) ? true : false
   end
+
+  def has_accepted_answer_correction?
+    answer_corrections.accepted
+  end
 end

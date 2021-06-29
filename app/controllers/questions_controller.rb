@@ -25,9 +25,12 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.save
         flash[:success] = 'Успешно'
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.replace('new_question_form', partial: 'questions/button')
-        }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace('new_question_form', partial: 'questions/button'),
+            turbo_stream.remove('empty_title')
+          ]
+        end
         format.html { redirect_to root_path }
       else
         flash[:alert] = 'Ошибка'

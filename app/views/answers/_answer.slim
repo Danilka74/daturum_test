@@ -8,6 +8,8 @@
     - answer.answer_corrections.each do |answer_correction|
       - if answer.owner?(current_user&.id) || answer_correction.owner?(current_user&.id)
         = render partial: 'answer_corrections/answer_correction', locals: { answer: answer, answer_correction: answer_correction, question: question }
+      - elsif answer.has_accepted_answer_correction?
+        = render partial: 'answer_corrections/answer_correction', locals: { answer: answer, answer_correction: answer_correction, question: question }
 
   - unless answer.has_answer_corrections_from_user?(current_user&.id)
     = turbo_frame_tag dom_id(answer)
